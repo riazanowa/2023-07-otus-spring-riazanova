@@ -19,9 +19,7 @@ public class CsvQuestionDao implements QuestionDao {
 
     @Override
     public List<Question> findAll() {
-        BufferedReader reader = null;
-        try {
-            reader = fetchFileFromResourceAsStream(fileNameProvider.getTestFileName());
+        try (BufferedReader reader = fetchFileFromResourceAsStream(fileNameProvider.getTestFileName())) {
             final List<QuestionDto> questionsDto = new CsvToBeanBuilder<QuestionDto>(reader)
                     .withSkipLines(1)
                     .withType(QuestionDto.class)
@@ -42,9 +40,8 @@ public class CsvQuestionDao implements QuestionDao {
 
         if (inputStream == null) {
             throw new IllegalArgumentException("file not found! " + fileName);
-        } else {
-            return new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
         }
+        return new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
     }
 }
 

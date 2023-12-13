@@ -23,7 +23,8 @@ public class TestServiceImpl implements TestService {
             Question question = questions.get(i);
             ioService.printFormattedLine("%d." + question.text(), i+1);
             for (int j = 0; j < question.answers().size(); j++) {
-                ioService.printFormattedLine("%s. " + question.answers().get(j).text(), String.valueOf((char)('a' + j)));
+                ioService.printFormattedLine("%s. " + question.answers().get(j).text() + " - %b", String.valueOf((char)('a' + j)),
+                        question.answers().get(j).isCorrect());
             }
         }
     }

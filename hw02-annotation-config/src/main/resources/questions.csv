@@ -1,0 +1,9 @@
+# Добавить сюда своих вопросов. Эту строку надо пропустить при настройке CsvToBean (withSkipLines)
+Is there life on Mars?;Science doesn't know this yet%true|Certainly. The red UFO is from Mars. And green is from Venus%false|Absolutely not%false
+How should resources be loaded form jar in Java?;ClassLoader#geResourceAsStream or ClassPathResource#getInputStream%true|ClassLoader#geResource#getFile + FileReader%false|Wingardium Leviosa%false
+Which option is a good way to handle the exception?;@SneakyThrow%false|e.printStackTrace()%false|Rethrow with wrapping in business exception (for example, QuestionReadException)%true|Ignoring exception%false
+What is the name of the world’s smallest horse?;Falabella%false|Shetland pony%false|Miniature horse%true
+What is Benedictine monk Dom Pierre Pirignon rumored to have created?;Tomato ketchup%false|Champagne%true|French fries%false
+Which country drinks the most amount of coffee per person?;Finland%true|Italy%false|Colombia%false
+What is the most common color of toilet paper in France?;Pink%true|White%false|Blue%false
+What color is an airplane’s famous black box?;Red%false|Orange%true|Black%false

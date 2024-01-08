@@ -8,9 +8,7 @@ import org.springframework.context.annotation.Primary;
 
 import java.util.Locale;
 import java.util.Map;
-
 @Setter
-@Configuration
 @ConfigurationProperties(prefix = "test")
 @Primary
 public class AppProperties implements TestConfig, TestFileNameProvider, LocaleConfig {

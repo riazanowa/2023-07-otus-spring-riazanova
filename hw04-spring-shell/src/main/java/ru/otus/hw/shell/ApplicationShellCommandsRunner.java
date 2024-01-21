@@ -6,8 +6,8 @@ import org.springframework.shell.Availability;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellMethodAvailability;
+import ru.otus.hw.domain.Student;
 import ru.otus.hw.service.LocalizedIOService;
-import ru.otus.hw.service.StudentService;
 import ru.otus.hw.service.TestRunnerService;
 
 @ShellComponent
@@ -17,28 +17,22 @@ public class ApplicationShellCommandsRunner {
     private final LocalizedIOService ioService;
 
     private final TestRunnerService testRunnerService;
-
-    private final StudentService studentService;
-
-    private String firstName;
-    private String lastName;
+    private Student student;
 
     @ShellMethod(value = "Login command", key = {"l", "login"})
     public String login(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        studentService.determineCurrentStudent(firstName, lastName);
+        this.student = new Student(firstName, lastName);
         return ioService.getMessage("ApplicationShellCommandsRunner.welcome.message", firstName, lastName);
     }
 
     @ShellMethod(value = "Execute test", key = {"start", "test"})
     @ShellMethodAvailability(value = "")
     public void executeTest() {
-        testRunnerService.run();
+        testRunnerService.run(student);
     }
 
     private Availability isNameAvailable() {
-        return firstName == null || lastName == null ?
+        return student.firstName() == null || student.lastName() == null ?
                 Availability.unavailable(ioService.getMessage("ApplicationShellCommandsRunner.reason"))
                 : Availability.available();
     }
